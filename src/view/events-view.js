@@ -1,50 +1,6 @@
 import { createElement } from '../render';
-import { createEditEventTemplate } from './trip-events-edit-view';
-
-const EVENTS_DATA = [
-  {
-    day: 'MAR 18',
-    icon: 'img/icons/taxi.png',
-    event: 'Taxi Amsterdam',
-    time: '10:30',
-    endTime: '11:00',
-    duration: '30M',
-    price: '20',
-    offers: ['Order Uber +€  20'],
-    star: true,
-    isEdit: true,
-  },
-  {
-    day: 'MAR 18',
-    icon: 'img/icons/flight.png',
-    event: 'Flight Chamonix',
-    time: '12:25',
-    endTime: '13:35',
-    duration: '01H 10M',
-    price: '160',
-    offers: [
-      {title: 'Add luggage', price: '50'},
-      {title: 'Switch to comfort', price: '80'}
-    ],
-    star: false,
-    isEdit: false,
-  },
-  {
-    day: 'MAR 18',
-    icon: 'img/icons/drive.png',
-    event: 'Drive Chamonix',
-    startTime: '14:30',
-    endTime: '16:05',
-    duration: '01H 35M',
-    price: '160',
-    offers: [{title: 'Rent a car', price: '200'}],
-    star: true,
-    isEdit: false,
-  },
-];
 
 const createEventTemplate = (item) => `<li class="trip-events__item">
-${item.isEdit ? createEditEventTemplate() : `
 <div class="event">
   <time class="event__date" datetime="2019-03-18">${item.day}</time>
   <div class="event__type">
@@ -83,18 +39,21 @@ ${item.isEdit ? createEditEventTemplate() : `
   </button>
 </div>
 </li>
-`}
 `;
 
-function createTripEventsTemplate() {
+function createTripEventsTemplate(data) {
   return `<ul class="trip-events__list">
-  ${EVENTS_DATA.map((item) => createEventTemplate(item)).join('')}
+  ${data.map((item) => createEventTemplate(item)).join('')}
 </ul>`;
 }
 
 export default class TripEventsView {
+  constructor(data) {
+    this.data = data;
+  }
+
   getTemplate() {
-    return createTripEventsTemplate();
+    return createTripEventsTemplate(this.data);
   }
 
   getElement() {

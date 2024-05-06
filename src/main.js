@@ -1,7 +1,7 @@
 import { render, RenderPosition } from './render';
-import TripInfoView from './view/trip-info-view';
-import TripFiltersView from './view/trip-filters-view';
-import TripPresenter from './trip-presenter';
+import TripInfoView from './view/info-view';
+import TripFiltersView from './view/filters-view';
+import TripPresenter from './presenter';
 
 const tripMainElement = document.querySelector('.trip-main');
 const tripControlsFiltersElement = document.querySelector('.trip-controls__filters');
